@@ -1,0 +1,16 @@
+body{
+    text-align: center;
+    background-color: rgb(233, 233, 233);
+}
+
+header h1{
+    color: rgb(50, 50, 50);
+    font-weight: bolder;
+    font-size: 170%;
+}
+
+header{
+    margin-top: 0px;
+    margin-bottom: 50px;
+
+}

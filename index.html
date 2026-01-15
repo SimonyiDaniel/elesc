@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>   
+    <header><h1>TUDASPROBA</h1></header>
+    <form action="index.html" method="get">
+        <p>1.hany eves a pg</p>
+        <input type="radio" name ="pg1" id = "pg1" value="pg1"> <label for="pg1">100</label> <br>
+        <input type="radio" name ="pg1" id = "pg2" value="pg1"> <label for="pg2">200</label> <br>
+        <input type="radio" name ="pg1" id = "pg3" value="pg1"> <label for="pg3">300</label> <br> <br>
+
+        <p>2.milyen szakmak vannak a pg-ben</p>
+        <input type="checkbox" name ="pg4" id = "pg4" value="pg4"> <label for="pg4">programozas</label> <br>
+        <input type="checkbox" name ="pg5" id = "pg5" value="pg5"> <label for="pg5">design</label> <br>
+        <input type="checkbox" name ="pg6" id = "pg6" value="pg6"> <label for="pg6">gepeszet</label> <br> <br>
+
+        <p>3.hogy hivjak a bufest</p>
+        <input type="text" name="bufe" id="bufe"> <br> <br>
+
+        <p>4.mennyire szereted a pg-t</p>
+        <input type="range" name="szeretem" id="szeretem" min="0" max="10"> <br> <br>
+
+        <p>5.ki a kedvenc infotanarod</p>
+        <select name="tanar" id="tanar">
+            <option value="juhasz">juhasz szabolcs</option>
+            <option value="havas">havas attila</option>
+            <option value="simon">simon gabor</option>
+        </select> <br> <br>
+
+        <p>6.milyen szinu a pg</p>
+        <input type="color" name="szin" id="szin"> <br> <br> <br>
+    
+        <input type="submit" value="Kuldés">
+        <script>
+            let url = new URL(window.location.href);
+            let valaszok = url.search.substring(1);
+        </script>
+    </form>
+</body>
+</html>
