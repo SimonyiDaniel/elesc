@@ -9,17 +9,17 @@
 <body>   
     <header><h1>TUDASPROBA</h1></header>
     <form action="index.html" method="get">
-        <p>1.hany eves a pg</p>
-        <input type="radio" name ="pg1" id = "pg1" value="pg1"> <label for="pg1">100</label> <br>
-        <input type="radio" name ="pg1" id = "pg2" value="pg1"> <label for="pg2">200</label> <br>
-        <input type="radio" name ="pg1" id = "pg3" value="pg1"> <label for="pg3">300</label> <br> <br>
+        <p id="kerdes1">1.hany eves a pg</p>
+        <input type="radio" name="pg1" id="pg1" value="pg1"> <label for="pg1">100</label> <br>
+        <input type="radio" name="pg1" id="pg2" value="pg2"> <label for="pg2">200</label> <br>
+        <input type="radio" name="pg1" id="pg3" value="pg3"> <label for="pg3">300</label> <br> <br>
 
-        <p>2.milyen szakmak vannak a pg-ben</p>
-        <input type="checkbox" name ="pg4" id = "pg4" value="pg4"> <label for="pg4">programozas</label> <br>
-        <input type="checkbox" name ="pg5" id = "pg5" value="pg5"> <label for="pg5">design</label> <br>
-        <input type="checkbox" name ="pg6" id = "pg6" value="pg6"> <label for="pg6">gepeszet</label> <br> <br>
+        <p id="kerdes2">2.milyen szakmak vannak a pg-ben</p>
+        <input type="checkbox" name="szakma" id="pg4" value="programozas"> <label for="pg4">programozas</label> <br>
+        <input type="checkbox" name="szakma" id="pg5" value="design"> <label for="pg5">design</label> <br>
+        <input type="checkbox" name="szakma" id="pg6" value="gepeszet"> <label for="pg6">gepeszet</label> <br> <br>
 
-        <p>3.hogy hivjak a bufest</p>
+        <p id="kerdes3">3.hogy hivjak a bufest</p>
         <input type="text" name="bufe" id="bufe"> <br> <br>
 
         <p>4.mennyire szereted a pg-t</p>
@@ -37,8 +37,49 @@
     
         <input type="submit" value="Kuldés">
         <script>
-            let url = new URL(window.location.href);
-            let valaszok = url.search.substring(1);
+            let url = window.location.search;
+            if(url.includes("?")){
+                
+                let params = new URLSearchParams(url);
+                
+
+                if(params.get("pg1") === "pg1"){
+                    document.getElementById("kerdes1").innerHTML = "1.hany eves a pg - <span style='color:green'>helyes valasz</span>";
+                } else if(params.get("pg1")) {
+                    document.getElementById("kerdes1").innerHTML = "1.hany eves a pg - <span style='color:red'>helytelen valasz</span>";
+                }
+
+
+                let szakmaValues = params.getAll("szakma");
+                if(szakmaValues.length > 0){
+                    let helyes = 0;
+                    let rossz = 0;
+                    for(let szakma of szakmaValues){
+                        if(szakma === "programozas" || szakma === "gepeszet"){
+                            helyes++;
+                        } else {
+                            rossz++;
+                        }
+                    }
+                    
+                    if(helyes === 2 && rossz === 0){
+                        document.getElementById("kerdes2").innerHTML = "2.milyen szakmak vannak a pg-ben - <span style='color:green'>helyes valasz</span>";
+                    } else {
+                        document.getElementById("kerdes2").innerHTML = "2.milyen szakmak vannak a pg-ben - <span style='color:orange'>reszben helyes (" + helyes + "/2 helyes)</span>";
+                    }
+                }
+
+
+                let bufeNev = params.get("bufe");
+                if(bufeNev){
+                    bufeNev = bufeNev.toLowerCase().trim();
+                    if(bufeNev === "andris" || bufeNev === "bandi" || bufeNev === "bandras"){
+                        document.getElementById("kerdes3").innerHTML = "3.hogy hivjak a bufest - <span style='color:green'>helyes valasz</span>";
+                    } else {
+                        document.getElementById("kerdes3").innerHTML = "3.hogy hivjak a bufest - <span style='color:red'>helytelen valasz (helyes: andris/bandi/bandras)</span>";
+                    }
+                }
+            }
         </script>
     </form>
 </body>
